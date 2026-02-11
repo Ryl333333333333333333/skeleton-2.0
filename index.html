@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Web Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #111827;
+      --sidebar: #0a0e13;
+      --accent: #22f3ff;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 64px;
+      background: var(--sidebar);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 14px;
+      border-right: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .sidebar button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 10px;
+      transition: 0.2s;
+    }
+
+    .sidebar button.active,
+    .sidebar button:hover {
+      color: var(--accent);
+      background: rgba(34,243,255,0.12);
+      box-shadow: 0 0 10px rgba(34,243,255,0.35);
+    }
+
+    /* ===== Main ===== */
+    .main {
+      flex: 1;
+      background: var(--panel);
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-size: 26px;
+    }
+
+    /* ===== Grid ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .grid.four {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px;
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+      transition: 0.25s;
+      text-align: center;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      box-shadow: 0 0 18px rgba(34,243,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(34,243,255,0.35);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Sidebar ===== -->
+  <div class="sidebar">
+    <button onclick="showSection('tv')" class="active" title="Free TV">📺</button>
+    <button onclick="showSection('anime')" title="Anime">🍥</button>
+    <button onclick="showSection('proxyhub')" title="Proxy Hub">🌐</button>
+    <button onclick="showSection('games')" title="Games">🎮</button>
+    <button onclick="showSection('apps')" title="Apps">📦</button>
+    <button onclick="showSection('music')" title="Music">🎵</button>
+    <button onclick="showSection('ai')" title="AI">🤖</button>
+    <button onclick="showSection('settings')" title="Settings">⚙️</button>
+  </div>
+
+  <!-- ===== Main Content ===== -->
+  <div class="main">
+
+    <div id="tv" class="section active">
+      <h1>Free TV</h1>
+      <div class="grid">
+        <div class="card">TV Placeholder</div>
+        <div class="card">TV Placeholder</div>
+      </div>
+    </div>
+
+    <div id="anime" class="section">
+      <h1>Anime</h1>
+      <div class="grid">
+        <div class="card">Anime Placeholder</div>
+        <div class="card">Anime Placeholder</div>
+      </div>
+    </div>
+
+    <div id="proxyhub" class="section">
+      <h1>Proxy Hub</h1>
+      <div class="grid">
+        <div class="card">Web Proxy Placeholder</div>
+        <div class="card">Game Proxy Placeholder</div>
+        <div class="card">Tool Proxy Placeholder</div>
+      </div>
+    </div>
+
+    <div id="games" class="section">
+      <h1>Games</h1>
+      <div class="grid four">
+        <div class="card" onclick="openProxy('https://example.com')">Game</div>
+        <div class="card">Game</div>
+        <div class="card">Game</div>
+        <div class="card">Game</div>
+      </div>
+    </div>
+
+    <div id="apps" class="section">
+      <h1>Apps</h1>
+      <div class="grid four">
+        <div class="card" onclick="openProxy('https://example.com')">App</div>
+        <div class="card">App</div>
+        <div class="card">App</div>
+        <div class="card">App</div>
+      </div>
+    </div>
+
+    <div id="music" class="section">
+      <h1>Music</h1>
+      <div class="grid">
+        <div class="card">Music Placeholder</div>
+        <div class="card">Music Placeholder</div>
+      </div>
+    </div>
+
+    <div id="ai" class="section">
+      <h1>AI</h1>
+      <div class="grid">
+        <div class="card">AI Tool Placeholder</div>
+        <div class="card">AI Tool Placeholder</div>
+      </div>
+    </div>
+
+    <div id="settings" class="section">
+      <h1>Settings</h1>
+      <div class="grid">
+        <div class="card">Setting Placeholder</div>
+        <div class="card">Setting Placeholder</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function openProxy(url) {
+      console.log("Opening via proxy:", url);
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
